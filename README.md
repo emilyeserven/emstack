@@ -1,11 +1,11 @@
 # The Stack
 
-Template because I don't really like fullstack frameworks.
+This template exists because I don't really like fullstack frameworks.
 
 ## Overall Tech
 - TypeScript
-- Fastify
-- React
+- React (Frontend)
+- Fastify (Middleware/Backend)
 
 ## Tooling
 - ESLint
