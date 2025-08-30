@@ -1,11 +1,13 @@
 import fastifyCors from "@fastify/cors";
 import fastifyEnv from "@fastify/env";
 import fastifySwagger from "@fastify/swagger";
+import fastifySwaggerUi from "@fastify/swagger-ui";
 import { JsonSchemaToTsProvider } from "@fastify/type-provider-json-schema-to-ts";
 import Fastify from "fastify";
 
 import { envOptions } from "./services/env";
 import swaggerOptions from "./services/swaggerOptions";
+import swaggerUiOptions from "./services/swaggerUiOptions";
 
 declare module "fastify" {
   interface FastifyInstance {
