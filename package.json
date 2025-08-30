@@ -6,6 +6,9 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
+    "dev:client": "pnpm -C client dev",
+    "dev:middleware": "pnpm -C middleware dev",
+    "dev": "concurrently \"pnpm run dev:middleware\" \"pnpm run dev:client\"",
     "lint": "eslint ..",
     "lint:fix":"eslint .. --fix"
   },

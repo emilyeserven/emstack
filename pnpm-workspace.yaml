@@ -1,0 +1,8 @@
+packages:
+  - 'client'
+  - 'middleware'
+  - 'emstack'
+
+onlyBuiltDependencies:
+  - '@tailwindcss/oxide'
+  - esbuild
