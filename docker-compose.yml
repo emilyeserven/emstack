@@ -6,8 +6,6 @@ services:
     container_name: middleware
     ports:
       - "3001:3001"
-    env_file:
-      - ./.env
     environment:
       - VALUE="Hi there!"
   client:

@@ -14,18 +14,18 @@ RUN corepack enable pnpm
 # Set the working directory for the application inside the container.
 WORKDIR /app
 
-# Stage 2: The `build` stage installs dependencies and builds the application.
-# This is where all the heavy lifting happens.
-FROM base AS build
-
 # Copy package.json and pnpm-lock.yaml first.
 # This leverages Docker's build cache, so if these files don't change,
 # the dependencies won't be reinstalled on every build.
 COPY package.json pnpm-lock.yaml ./
 
+FROM base AS prod-deps
 # Mount the pnpm store as a cache. This dramatically speeds up builds
 # by preventing re-downloads of packages.
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod
+
+FROM base AS build
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install
 
 ENV FASTIFY_ADDRESS=0.0.0.0
 
@@ -47,15 +47,15 @@ WORKDIR /app
 
 # Copy the built assets from the 'build' stage into the final image.
 # The 'dist' directory is the default output for Vite.
+COPY --from=prod-deps /app/node_modules /app/node_modules
 COPY --from=build /app/dist /app/dist
-COPY --from=build /app/node_modules /app/node_modules
 COPY --from=build /app/package.json ./
-COPY --from=build /app/app.js ./
+COPY --from=build /app/server.js ./
 
 # Define the command to start the application.
 # This command assumes you have a `pnpm start` script in your `package.json`
 # to serve the static files from the 'dist' directory.
-CMD ["/app/dist/index.html"]
+CMD ["server.js"]
 
 # Expose the port the application will run on. Vite's dev server defaults to 5173,
 # but your application might serve the static assets on a different port.

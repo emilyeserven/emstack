@@ -6,9 +6,9 @@ import { JsonSchemaToTsProvider } from "@fastify/type-provider-json-schema-to-ts
 import Fastify from "fastify";
 
 import routes from "./routes/routes.js";
-import { envOptions } from "./services/env";
-import swaggerOptions from "./services/swaggerOptions";
-import swaggerUiOptions from "./services/swaggerUiOptions";
+import { envOptions } from "./services/env.js";
+import swaggerOptions from "./services/swaggerOptions.js";
+import swaggerUiOptions from "./services/swaggerUiOptions.js";
 
 declare module "fastify" {
   interface FastifyInstance {
@@ -40,6 +40,7 @@ const start = async () => {
       port: 3001,
       host: "0.0.0.0",
     });
+    console.log("listening on http://localhost:3001");
   }
   catch (err) {
     fastify.log.error(err);
