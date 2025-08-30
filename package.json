@@ -10,7 +10,7 @@
     "dev:middleware": "pnpm -C middleware dev",
     "dev": "concurrently \"pnpm run dev:middleware\" \"pnpm run dev:client\"",
     "lint": "eslint ..",
-    "lint:fix":"eslint .. --fix"
+    "lint:fix": "eslint .. --fix"
   },
   "devDependencies": {
     "@eslint/js": "^9.34.0",
@@ -20,6 +20,7 @@
     "@tanstack/router-plugin": "^1.131.28",
     "@typescript-eslint/parser": "^8.41.0",
     "eslint": "^9.34.0",
+    "eslint-import-resolver-typescript": "^4.4.4",
     "eslint-plugin-better-tailwindcss": "^3.7.6",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-react": "^7.37.5",
@@ -30,7 +31,7 @@
     "typescript-eslint": "^8.41.0"
   },
   "private": true,
-  "packageManager": "pnpm@9.15.4+sha512.b2dc20e2fc72b3e18848459b37359a32064663e5627a51e4c74b2c29dd8e8e0491483c3abb40789cfd578bf362fb6ba8261b05f0387d76792ed6e23ea3b1b6a0",
+  "packageManager": "pnpm@10.13.1",
   "dependencies": {
     "concurrently": "^9.2.1"
   }
