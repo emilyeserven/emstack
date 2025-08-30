@@ -1,6 +1,9 @@
 import fastifyCors from "@fastify/cors";
+import fastifyEnv from "@fastify/env";
 import { JsonSchemaToTsProvider } from "@fastify/type-provider-json-schema-to-ts";
 import Fastify from "fastify";
+
+import { envOptions } from "./services/env";
 
 declare module "fastify" {
   interface FastifyInstance {
@@ -16,7 +19,7 @@ const fastify = Fastify({
 
 await fastify.register(fastifyCors);
 
-fastify.register(fastifyEnc, envOptions)
+fastify.register(fastifyEnv, envOptions)
   .ready((err) => {
     if (err) console.error(err);
   });
