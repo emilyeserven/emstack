@@ -10,3 +10,5 @@ yarn-error.log*
 
 .idea
 .vscode/*
+*storybook.log
+storybook-static
