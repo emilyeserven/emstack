@@ -30,7 +30,7 @@ const RootComponent: React.FunctionComponent = () => {
               <button onClick={() => { setTheme("light"); }}>Set to Light Mode</button>
             )
             : (
-              <button onClick={() => { setTheme("dark"); }}>Set to Light Mode</button>
+              <button onClick={() => { setTheme("dark"); }}>Set to Dark Mode</button>
             )
         }
       </div>

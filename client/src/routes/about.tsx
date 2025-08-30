@@ -14,16 +14,18 @@ function About() {
     queryKey: ["test"],
     queryFn: () => fetchTest(),
   });
+
+  console.log(data);
   return (
     <div className="p-2">
       <h2>Hello from About!</h2>
       <p>
-        Test data is
+        Test data is{" "}
         {isPending && "Pending"}
         {error && "Erroring"}
         {data && "loaded!"}
       </p>
-      {data && data.items}
+      {data && data.item}
     </div>
   );
 }
