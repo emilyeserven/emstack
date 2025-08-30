@@ -5,6 +5,7 @@ import fastifySwaggerUi from "@fastify/swagger-ui";
 import { JsonSchemaToTsProvider } from "@fastify/type-provider-json-schema-to-ts";
 import Fastify from "fastify";
 
+import routes from "./routes/routes.js";
 import { envOptions } from "./services/env";
 import swaggerOptions from "./services/swaggerOptions";
 import swaggerUiOptions from "./services/swaggerUiOptions";
