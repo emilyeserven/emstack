@@ -15,7 +15,6 @@ function About() {
     queryFn: () => fetchTest(),
   });
 
-  console.log(data);
   return (
     <div className="p-2">
       <h2>Hello from About!</h2>
