@@ -1,8 +1,9 @@
 packages:
-  - 'client'
-  - 'middleware'
-  - 'emstack'
+  - client
+  - middleware
+  - emstack
 
 onlyBuiltDependencies:
   - '@tailwindcss/oxide'
   - esbuild
+  - unrs-resolver
