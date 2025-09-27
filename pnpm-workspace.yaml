@@ -1,7 +1,5 @@
 packages:
-  - client
-  - middleware
-  - emstack
+  - packages/*
 
 onlyBuiltDependencies:
   - '@tailwindcss/oxide'
