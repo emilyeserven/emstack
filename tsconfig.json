@@ -1,12 +1,19 @@
 {
   "compilerOptions": {
-    "target": "es2016",
-    "module": "commonjs",
+    "target": "ES2022",
+    "module": "ESNext",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
     "outDir": "dist"
   },
-  "include": ["src"]
+  "include": [
+    "packages/**/src/**/*.ts",
+    "packages/**/src/**/*.js",
+    "packages/**/tests/**/*.ts",
+    "packages/**/tests/**/*.js",
+    "**/vite.config.ts",
+  ],
+  "exclude": ["**/assets/**/*", "node_modules", "**/dist/**"]
 }
