@@ -7,7 +7,7 @@
   "scripts": {
     "build": "pnpm run -r build",
     "dev": "concurrently \"pnpm --filter=@emstack/middleware --stream run dev\" \"pnpm --filter=@emstack/client --stream run dev\"",
-    "lint": "pnpm --color run -r lint",
+    "lint": "eslint .",
     "lint:fix": "eslint .. --fix"
   },
   "devDependencies": {

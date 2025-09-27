@@ -8,6 +8,7 @@ import tailwindConfig from "./lintConfigs/tailwindConfig.config.js";
 import tsQueryConfig from "./lintConfigs/tsQueryConfig.config.js";
 import tsRouterConfig from "./lintConfigs/tsRouterConfig.config.js";
 import stylisticConfig from "./lintConfigs/stylisticConfig.config.js";
+import middlewareConfig from "./lintConfigs/middlewareConfig.config.js";
 
 import globals from "globals";
 import { globalIgnores } from "eslint/config";
@@ -22,6 +23,7 @@ const nonClientGlobs = [
 export default tseslint.config([
   globalIgnores(["**/dist/**/*"]),
   ...stylisticConfig,
+  storybook.configs["flat/recommended"],
   {
     files: ["**/*.{js,ts}"],
     ignores: nonClientGlobs,
@@ -47,7 +49,19 @@ export default tseslint.config([
     },
   },
   {
-    files: ["**/*.{js,jsx}"],
+    files: ["packages/client/src/**/*.{js,jsx,ts,tsx}"],
+    extends: [...tsQueryConfig, tsRouterConfig],
+  },
+  {
+    files: ["packages/client/src/**/*.{jsx,tsx}"],
+    extends: [...reactConfig, ...tailwindConfig],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.browser,
+    },
+  },
+  {
+    files: ["**/*.config.{js,ts}"],
     extends: [...jsConfig],
     languageOptions: {
       ecmaVersion: 2020,
@@ -55,11 +69,20 @@ export default tseslint.config([
     },
   },
   {
-    files: ["**/*.{ts,tsx}"],
-    extends: [...jsConfig, ...tsConfig],
+    files: ["**/*.json"],
+    extends: [...jsConfig],
+    rules: {
+      "@stylistic/quote-props": 0,
+      "@stylistic/semi": 0,
+      "@stylistic/comma-dangle": 0,
+    },
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
     },
+  },
+  {
+    files: nonClientGlobs,
+    extends: [...middlewareConfig],
   },
 ]);
