@@ -20,7 +20,6 @@ declare module "@tanstack/react-router" {
 
 const queryClient = new QueryClient();
 
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const rootElement = document.getElementById("root")!;
 if (!rootElement.innerHTML) {
   const root = createRoot(rootElement);
