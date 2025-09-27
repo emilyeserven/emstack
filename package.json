@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "build": "tsc",
+    "build": "pnpm run -r build",
     "dev": "concurrently \"pnpm --filter=@emstack/middleware --stream run dev\" \"pnpm --filter=@emstack/client --stream run dev\"",
     "lint": "pnpm --color run -r lint",
     "lint:fix": "eslint .. --fix"

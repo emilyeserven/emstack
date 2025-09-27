@@ -10,3 +10,7 @@ yarn-error.log*
 
 .idea
 .vscode/*
+
+/dist
+
+tsconfig.build.tsbuildinfo
