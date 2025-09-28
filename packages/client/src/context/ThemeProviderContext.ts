@@ -4,6 +4,7 @@ export type Theme = "dark" | "light" | "system";
 
 interface ThemeProviderState {
   theme: Theme;
+  // eslint-disable-next-line no-unused-vars -- idk it still works
   setTheme: (theme: Theme) => void;
 }
 

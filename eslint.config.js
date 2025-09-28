@@ -25,7 +25,7 @@ export default tseslint.config([
   ...stylisticConfig,
   storybook.configs["flat/recommended"],
   {
-    files: ["**/*.{js,ts}"],
+    files: ["**/*.{js,ts,jsx,tsx}"],
     ignores: nonClientGlobs,
     extends: [...jsConfig],
     languageOptions: {

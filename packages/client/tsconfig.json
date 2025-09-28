@@ -9,8 +9,10 @@
       "path": "./tsconfig.node.json"
     }
   ],
+  "include": ["src"],
   "compilerOptions": {
-    "baseUrl": ".",
+    "composite": true,
+    "baseUrl": "./",
     "paths": {
       "@/*": ["./src/*"]
     }

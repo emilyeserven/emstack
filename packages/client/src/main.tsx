@@ -6,13 +6,14 @@ import { createRoot } from "react-dom/client";
 
 import { ThemeProvider } from "@/context/ThemeProvider.tsx";
 
-import { routeTree } from "./routeTree.gen";
+import { routeTree } from "./routeTree.gen.ts";
 
 const router = createRouter({
   routeTree,
 });
 
 declare module "@tanstack/react-router" {
+  // eslint-disable-next-line no-unused-vars -- We need this or else
   interface Register {
     router: typeof router;
   }

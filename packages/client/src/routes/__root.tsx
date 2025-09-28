@@ -1,3 +1,5 @@
+import React from "react";
+
 import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
 
 import { useTheme } from "@/hooks/useTheme.ts";
