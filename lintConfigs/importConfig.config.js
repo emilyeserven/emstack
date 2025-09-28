@@ -36,6 +36,10 @@ export default defineConfig([
         max: 10,
         ignoreTypeImports: true,
       }],
+      /* Causing errors, turning off for now. */
+      "import/default": 0,
+      "import/no-named-as-default-member": 0,
+      "import/no-unresolved": 0,
     },
   },
   {

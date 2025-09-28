@@ -1,11 +1,13 @@
 /// <reference types="vitest/config" />
+import { fileURLToPath } from "node:url";
 import path from "path";
+
+import { storybookTest } from "@storybook/addon-vitest/vitest-plugin";
 import tailwindcss from "@tailwindcss/vite";
 import { tanstackRouter } from "@tanstack/router-plugin/vite";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
-import { fileURLToPath } from "node:url";
-import { storybookTest } from "@storybook/addon-vitest/vitest-plugin";
+
 const dirname = typeof __dirname !== "undefined" ? __dirname : path.dirname(fileURLToPath(import.meta.url));
 
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon

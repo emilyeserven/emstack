@@ -1,7 +1,7 @@
 import type { Theme } from "./ThemeProviderContext.ts";
+import type { ReactNode } from "react";
 
 import { useEffect, useState } from "react";
-import type { ReactNode } from "react";
 
 import { ThemeProviderContext } from "@/context/ThemeProviderContext";
 

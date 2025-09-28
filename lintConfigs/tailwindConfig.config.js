@@ -1,6 +1,6 @@
 import eslintParserTypeScript from "@typescript-eslint/parser";
-import eslintPluginBetterTailwindcss from "eslint-plugin-better-tailwindcss";
 import { defineConfig } from "eslint/config";
+import eslintPluginBetterTailwindcss from "eslint-plugin-better-tailwindcss";
 
 export default defineConfig([
   {
