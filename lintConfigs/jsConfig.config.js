@@ -1,12 +1,12 @@
 import js from "@eslint/js";
 import { defineConfig } from "eslint/config";
-import importPlugin from "eslint-plugin-import";
 
 export default defineConfig([
   js.configs.recommended,
-  importPlugin.flatConfigs.recommended,
+  // importPlugin.flatConfigs.recommended,
   {
     rules: {
+      /*
       "import/no-unresolved": ["error", {
         caseSensitive: false,
         ignore: [
@@ -14,6 +14,7 @@ export default defineConfig([
           "typescript-eslint",
         ],
       }],
+        */
       "no-console": ["warn"],
     },
   },

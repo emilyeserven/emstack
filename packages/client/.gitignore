@@ -10,7 +10,7 @@ yarn-error.log*
 
 .idea
 .vscode/*
+*storybook.log
+storybook-static
 
-/dist
-
-tsconfig.build.tsbuildinfo
+dist

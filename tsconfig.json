@@ -1,12 +1,25 @@
 {
-  "compilerOptions": {
-    "target": "es2016",
-    "module": "commonjs",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "skipLibCheck": true,
-    "outDir": "dist"
+  "ts-node": {
+    "files": true
   },
-  "include": ["src"]
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "noImplicitAny": true,
+    "allowJs": true,
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "noUncheckedSideEffectImports": true
+  },
+  "include": [
+    "packages/**/src/**/*.ts",
+    "packages/**/src/**/*.js",
+    "packages/**/tests/**/*.ts",
+    "packages/**/tests/**/*.js",
+    "**/vite.config.ts",
+  ],
+  "exclude": ["**/assets/**/*", "node_modules", "**/dist/**"]
 }

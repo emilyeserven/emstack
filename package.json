@@ -5,11 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "build": "tsc",
-    "dev:client": "pnpm -C client dev",
-    "dev:middleware": "pnpm -C middleware dev",
-    "dev": "concurrently \"pnpm run dev:middleware\" \"pnpm run dev:client\"",
-    "lint": "pnpm --color run -r lint",
+    "build": "pnpm run -r build",
+    "dev": "concurrently \"pnpm --filter=@emstack/middleware --stream run dev\" \"pnpm --filter=@emstack/client --stream run dev\"",
+    "lint": "eslint .",
     "lint:fix": "eslint .. --fix"
   },
   "devDependencies": {
@@ -26,7 +24,9 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
+    "eslint-plugin-storybook": "^9.1.8",
     "globals": "^16.3.0",
+    "tailwindcss": "^4.1.12",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.41.0"
   },
