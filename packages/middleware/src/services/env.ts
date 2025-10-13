@@ -7,11 +7,6 @@ const envSchema = {
   },
 } as const;
 
-export const envOptions = {
-  schema: envSchema,
-  dotenv: true,
-};
-
 export const makeEnvOptions = (dirname: string) => {
   return {
     schema: envSchema,
