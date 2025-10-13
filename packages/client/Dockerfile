@@ -8,8 +8,10 @@ ENV PATH="$PNPM_HOME:$PATH"
 
 # Install pnpm globally and enable it with Corepack.
 # This ensures consistency with the lockfile.
-RUN npm install -g pnpm
-RUN corepack enable pnpm
+RUN npm install -g corepack
+RUN corepack enable
+
+FROM base AS devbuild
 
 # Set the working directory for the application inside the container.
 WORKDIR /app
@@ -17,25 +19,17 @@ WORKDIR /app
 # Copy package.json and pnpm-lock.yaml first.
 # This leverages Docker's build cache, so if these files don't change,
 # the dependencies won't be reinstalled on every build.
-COPY package.json pnpm-lock.yaml ./
+COPY . .
 
-FROM base AS prod-deps
 # Mount the pnpm store as a cache. This dramatically speeds up builds
 # by preventing re-downloads of packages.
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod
-
-FROM base AS build
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 
 ENV FASTIFY_ADDRESS=0.0.0.0
 
-# Copy the rest of the application source code.
-COPY . .
+RUN pnpm run -r build
 
-# Run the Vite build command. This creates the production-ready static assets.
-RUN pnpm run build
-
-RUN ls
+RUN pnpm deploy --filter=@emstack/client --prod appout
 
 # Stage 3: The `final` stage creates a small, clean production image.
 # It only includes the necessary files to run the app, not the build tools.
@@ -45,12 +39,11 @@ USER nonroot
 
 WORKDIR /app
 
+ENV NODE_ENV=production
+
 # Copy the built assets from the 'build' stage into the final image.
 # The 'dist' directory is the default output for Vite.
-COPY --from=prod-deps /app/node_modules /app/node_modules
-COPY --from=build /app/dist /app/dist
-COPY --from=build /app/package.json ./
-COPY --from=build /app/server.js ./
+COPY --from=devbuild /app/appout/ .
 
 # Define the command to start the application.
 # This command assumes you have a `pnpm start` script in your `package.json`

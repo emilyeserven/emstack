@@ -1,8 +1,8 @@
 services:
   middleware:
     build:
-      context: ./middleware
-      dockerfile: Dockerfile
+      context: ./
+      dockerfile: ./packages/middleware/Dockerfile
     container_name: middleware
     ports:
       - "3001:3001"
@@ -10,8 +10,8 @@ services:
       - VALUE="Hi there!"
   client:
     build:
-      context: ./client
-      dockerfile: Dockerfile
+      context: ./
+      dockerfile: ./packages/client/Dockerfile
     container_name: client
     ports:
       - "3000:3000"

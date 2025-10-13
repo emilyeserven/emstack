@@ -8,8 +8,10 @@ ENV PATH="$PNPM_HOME:$PATH"
 
 # Install pnpm globally and enable it with Corepack.
 # This ensures consistency with the lockfile.
-RUN npm install -g pnpm
-RUN corepack enable pnpm
+RUN npm install -g corepack
+RUN corepack enable
+
+FROM base AS devbuild
 
 # Set the working directory for the application inside the container.
 WORKDIR /app
@@ -17,46 +19,36 @@ WORKDIR /app
 # Copy package.json and pnpm-lock.yaml first.
 # This leverages Docker's build cache, so if these files don't change,
 # the dependencies won't be reinstalled on every build.
-COPY package.json pnpm-lock.yaml ./
-
-
-FROM base AS prod-deps
-# Mount the pnpm store as a cache. This dramatically speeds up builds
-# by preventing re-downloads of packages.
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod
-
-FROM base AS build
-# Mount the pnpm store as a cache. This dramatically speeds up builds
-# by preventing re-downloads of packages.
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install
-
-ENV FASTIFY_ADDRESS=0.0.0.0
-# Copy the rest of the application source code.
 COPY . .
 
-# Run the Vite build command. This creates the production-ready static assets.
-RUN pnpm run build
+# Mount the pnpm store as a cache. This dramatically speeds up builds
+# by preventing re-downloads of packages.
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 
-RUN ls
+ENV FASTIFY_ADDRESS=0.0.0.0
+
+RUN pnpm run -r build
+
+RUN pnpm deploy --filter=@emstack/middleware --prod appout
 
 # Stage 3: The `final` stage creates a small, clean production image.
 # It only includes the necessary files to run the app, not the build tools.
-FROM gcr.io/distroless/nodejs22
+FROM gcr.io/distroless/nodejs22 as prod
 
 USER nonroot
 
 WORKDIR /app
 
+ENV NODE_ENV=production
+
 # Copy the built assets from the 'build' stage into the final image.
 # The 'dist' directory is the default output for Vite.
-COPY --from=build /app/dist /app/dist
-COPY --from=prod-deps /app/node_modules /app/node_modules
-COPY --from=build /app/package.json ./
+COPY --from=devbuild /app/appout/ .
 
 # Define the command to start the application.
 # This command assumes you have a `pnpm start` script in your `package.json`
 # to serve the static files from the 'dist' directory.
-CMD ["dist/app.js"]
+CMD ["src/app.js"]
 
 # Expose the port the application will run on. Vite's dev server defaults to 5173,
 # but your application might serve the static assets on a different port.
