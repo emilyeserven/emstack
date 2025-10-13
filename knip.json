@@ -1,0 +1,28 @@
+{
+  "workspaces": {
+    "packages/client": {
+      "vite": {
+        "config": [
+          "vite.config.ts"
+        ]
+      },
+      "ignore": "src/routeTree.gen.ts",
+      "ignoreDependencies": [
+        "tailwindcss"
+      ]
+    },
+    "packages/types": {
+      "project": [
+        "src/*.{js,ts}"
+      ]
+    },
+    "packages/middleware": {
+      "project": [
+        "src/**/*.ts"
+      ]
+    }
+  },
+  "ignoreDependencies": [
+    "syncpack"
+  ]
+}

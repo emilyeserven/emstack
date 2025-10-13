@@ -2,10 +2,14 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "noEmit": false,
-    "outDir": "dist",
-    "rootDir": "src",
-    "declaration": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
     "composite": true,
   },
-  "include": ["src"]
+  "include": ["src"],
+  "references": [
+    {
+      "path": "../types/tsconfig.build.json"
+    }
+  ]
 }
