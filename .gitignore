@@ -12,5 +12,6 @@ yarn-error.log*
 .vscode/*
 
 dist
+appout
 
 tsconfig.build.tsbuildinfo

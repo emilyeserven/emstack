@@ -3,16 +3,18 @@
     "files": true
   },
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "target": "ES2022",
+    "module": "ES2022",
+    "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "noImplicitAny": true,
     "allowJs": true,
     "strict": true,
     "allowSyntheticDefaultImports": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+    "esModuleInterop": true,
+    "outDir": "./dist"
   },
   "include": [
     "packages/**/src/**/*.ts",

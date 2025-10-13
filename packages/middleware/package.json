@@ -3,11 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "main": "src/app.ts",
+  "main": "dist/app.js",
   "scripts": {
     "dev": "nodemon --exec tsx src/app.ts",
     "build": "tsc -p tsconfig.build.json"
   },
+  "files": [
+    "dist/*"
+  ],
   "private": true,
   "packageManager": "pnpm@10.13.1",
   "dependencies": {

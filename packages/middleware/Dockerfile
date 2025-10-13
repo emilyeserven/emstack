@@ -31,9 +31,11 @@ RUN pnpm run -r build
 
 RUN pnpm deploy --filter=@emstack/middleware --prod appout
 
+RUN ls
+
 # Stage 3: The `final` stage creates a small, clean production image.
 # It only includes the necessary files to run the app, not the build tools.
-FROM gcr.io/distroless/nodejs22 as prod
+FROM gcr.io/distroless/nodejs22 AS prod
 
 USER nonroot
 
@@ -48,7 +50,7 @@ COPY --from=devbuild /app/appout/ .
 # Define the command to start the application.
 # This command assumes you have a `pnpm start` script in your `package.json`
 # to serve the static files from the 'dist' directory.
-CMD ["src/app.js"]
+CMD ["dist/app.js"]
 
 # Expose the port the application will run on. Vite's dev server defaults to 5173,
 # but your application might serve the static assets on a different port.
