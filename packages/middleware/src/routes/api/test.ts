@@ -1,5 +1,6 @@
 import { JsonSchemaToTsProvider } from "@fastify/type-provider-json-schema-to-ts";
 import { FastifyInstance } from "fastify";
+import { DynamicTest } from "@emstack/types/src/index.js";
 
 const testSchema = {
   schema: {
@@ -26,7 +27,8 @@ export default async function (server: FastifyInstance) {
       const {
         test,
       } = request.params;
-      return test;
+      const returnValue: DynamicTest = test;
+      return returnValue;
     },
   );
 }
