@@ -6,9 +6,14 @@ import { JsonSchemaToTsProvider } from "@fastify/type-provider-json-schema-to-ts
 import Fastify from "fastify";
 
 import routes from "./routes/routes.js";
-import { envOptions } from "./services/env.js";
+import { makeEnvOptions } from "./services/env.js";
 import swaggerOptions from "./services/swaggerOptions.js";
 import swaggerUiOptions from "./services/swaggerUiOptions.js";
+import { fileURLToPath } from "url";
+import path from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 declare module "fastify" {
   interface FastifyInstance {
@@ -24,7 +29,7 @@ const fastify = Fastify({
 
 await fastify.register(fastifyCors);
 
-fastify.register(fastifyEnv, envOptions)
+fastify.register(fastifyEnv, makeEnvOptions(__dirname))
   .ready((err) => {
     if (err) console.error(err);
   });
@@ -44,6 +49,7 @@ const start = async () => {
   }
   catch (err) {
     fastify.log.error(err);
+    console.error("Make sure there are not multiple instances of a server running on port 3001.");
     process.exit(1);
   }
 };
