@@ -14,8 +14,8 @@ importers:
         version: 9.2.1
     devDependencies:
       '@emilyeserven/eslint-config':
-        specifier: 1.0.26
-        version: 1.0.26(71a230fa275350687b73d69a5b550763)
+        specifier: 1.0.27
+        version: 1.0.27(71a230fa275350687b73d69a5b550763)
       '@stylistic/eslint-plugin':
         specifier: ^5.2.3
         version: 5.2.3(eslint@9.34.0(jiti@2.6.1))
@@ -393,8 +393,8 @@ packages:
     peerDependencies:
       storybook: ^0.0.0-0 || ^9.0.0 || ^9.1.0-0 || ^9.2.0-0 || ^10.0.0-0
 
-  '@emilyeserven/eslint-config@1.0.26':
-    resolution: {integrity: sha512-mriXzxNl9+o5DzZZK1lgsgMO0lqACcHKFgUsVYUS1VMIi5wpEkmYrEO/LNdhAdqsxNdCDuzPrJlwviC3hebHrw==, tarball: https://npm.pkg.github.com/download/@emilyeserven/eslint-config/1.0.26/7714043526d0798c4a868614e2edc6d3a6561316}
+  '@emilyeserven/eslint-config@1.0.27':
+    resolution: {integrity: sha512-75SziK3ZGays7zjJOBHIynUdNOkfNMJtor5c0jzp7cu5lxvCzfR1d0WZfnS7chehcwYBrR8eHrXmFCeAujq6uQ==, tarball: https://npm.pkg.github.com/download/@emilyeserven/eslint-config/1.0.27/3885344ddffeb0d7907e7094230367e0ce944a07}
     peerDependencies:
       '@eslint/js': ^9.34.0
       '@stylistic/eslint-plugin': ^5.2.3
@@ -4162,7 +4162,7 @@ snapshots:
       - '@chromatic-com/cypress'
       - '@chromatic-com/playwright'
 
-  '@emilyeserven/eslint-config@1.0.26(71a230fa275350687b73d69a5b550763)':
+  '@emilyeserven/eslint-config@1.0.27(71a230fa275350687b73d69a5b550763)':
     dependencies:
       '@eslint/js': 9.34.0
       '@stylistic/eslint-plugin': 5.2.3(eslint@9.34.0(jiti@2.6.1))
