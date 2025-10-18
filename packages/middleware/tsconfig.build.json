@@ -1,10 +1,16 @@
 {
   "extends": "./tsconfig.json",
+  "ts-node": {
+    "files": true
+  },
   "compilerOptions": {
     "noEmit": false,
     "outDir": "./dist",
     "rootDir": "./src",
     "composite": true,
+    "module": "ES2022",
+    "moduleResolution": "bundler",
+    "rewriteRelativeImportExtensions": true
   },
   "include": ["src"],
   "references": [
