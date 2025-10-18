@@ -1,18 +1,57 @@
 {
+  // --- Root Configuration Keys ---
+
+  // Specifies the path to the previous tsconfig file (the package-level config) that this configuration inherits from.
+  // This means it inherits all settings from the package config, which in turn inherited from the base config.
   "extends": "./tsconfig.json",
+
+  // Configuration specific to 'ts-node'.
   "ts-node": {
+    // Ensures 'ts-node' includes all files specified in the 'files' or 'include' array.
+    // This is useful if you use ts-node to run your build script before compilation.
     "files": true
   },
+
+  // --- Compiler Options (The Compilation Overrides) ---
+
+  // This section overrides the inherited options to prepare the package for distribution.
   "compilerOptions": {
+    // **The most crucial override:** Sets this to `false` to instruct TypeScript to **output** compiled JavaScript files.
     "noEmit": false,
+
+    // Specifies the output directory for the resulting JavaScript and declaration files.
     "outDir": "dist",
+
+    // Defines the root directory of your source code (`src`). This setting is vital to ensure that the
+    // structure of `src` (e.g., `src/utils/`) is preserved in the output directory (`dist/utils/`).
     "rootDir": "src",
+
+    // **Enables type generation.** Instructs the compiler to generate declaration files (`.d.ts`) alongside the compiled JavaScript.
+    // This is essential for providing type information to consumers of your published package.
     "declaration": true,
+
+    // **Enables Project References.** Marks this project as part of a larger, composable build system.
+    // It enables features that accelerate incremental compilation in monorepos (e.g., using `tsc -b`).
     "composite": true,
+
+    // Generates source map files for the declaration files (`.d.ts.map`).
+    // This improves debugging and navigation for users consuming your types.
     "declarationMap": true,
+
+    // Defines the module system for the output JavaScript (modern, native ES Modules).
     "module": "ES2022",
+
+    // Defines the module resolution strategy, optimized for modern bundlers.
     "moduleResolution": "bundler",
+
+    // **Crucial for Native ESM:** When generating JavaScript, this ensures that relative import paths (e.g., `./file`)
+    // are rewritten to include the necessary extension (e.g., `./file.js`). This is necessary for Node.js to resolve ES Modules correctly.
     "rewriteRelativeImportExtensions": true
   },
+
+  // --- File Inclusion/Exclusion ---
+
+  // Narrows the scope for *this specific build* to only include the source code files.
+  // This ensures that test files are not accidentally included in the distribution output.
   "include": ["src"]
 }

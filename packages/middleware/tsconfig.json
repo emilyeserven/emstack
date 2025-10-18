@@ -1,11 +1,34 @@
 {
+  // --- Root Configuration Keys ---
+
+  // **Inheritance:** Specifies the path to the base tsconfig file that this configuration inherits all its settings from.
+  // The path "../../tsconfig.json" assumes this package is nested two directories deep (e.g., packages/middleware)
+  // and the base config lives at the project root.
   "extends": "../../tsconfig.json",
+
+  // --- Compiler Options (Overrides and Additions) ---
+
+  // This section adds or overrides compiler options inherited from the base configuration.
   "compilerOptions": {
+    // **Modern Module Feature:** Allows you to use file extensions like `.ts` or `.tsx` in your import specifiers.
+    // This is useful for environments (like native Node.js ESM) that require explicit file extensions.
     "allowImportingTsExtensions": true,
 
+    // **Path Resolution Root:** Defines the base directory for resolving non-relative module names (especially those configured in `paths`).
+    // Setting it to "./" means the current `/packages/middleware` directory is the root for path lookups.
     "baseUrl": "./",
+
+    // **Module Aliases:** Configures custom paths for cleaner imports.
     "paths": {
+      // **Alias Definition:** The key "@/*" acts as an alias. Any import starting with `@/`
+      // (e.g., `import { X } from '@/utils/config'`) will be resolved by TypeScript.
+      // **Resolution Target:** The value `["./src/*"]` tells TypeScript to look for the file
+      // by mapping the rest of the import path into the local `/packages/middleware/src` directory.
       "@/*": ["./src/*"]
     }
   }
+
+  // NOTE: This config does not include "include" or "exclude" sections.
+  // Therefore, it inherits the comprehensive "include" and "exclude" settings from the base tsconfig.json,
+  // meaning it will check all files in `packages/**/src`, `packages/**/tests`, and `**/vite.config.ts`.
 }

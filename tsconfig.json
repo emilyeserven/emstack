@@ -1,27 +1,86 @@
 {
+  // --- Root Configuration Keys ---
+
+  // Configuration specific to 'ts-node', a tool for executing TypeScript files directly without pre-compilation.
   "ts-node": {
+    // Tells ts-node to include files from the "files" array (if present in the root of tsconfig) or simply to include non-imported files like entry points.
     "files": true
   },
+
+  // --- Compiler Options ---
+
+  // A major section defining how TypeScript should compile your code.
   "compilerOptions": {
+    // Specifies the JavaScript language target version for the emitted output.
+    // 'ES2022' is a modern standard, allowing the compiler to retain newer features like top-level await.
     "target": "ES2022",
+
+    // Specifies the module system to use for the generated JavaScript code.
+    // 'ES2022' (or 'ESNext') means using standard ES module syntax (import/export).
     "module": "ES2022",
+
+    // Determines how module specifiers (like './file.js') are resolved.
+    // 'bundler' is a modern setting that delegates module resolution largely to a bundler (like Webpack or Vite)
+    // and is a good choice for modern build setups.
     "moduleResolution": "bundler",
+
+    // Ensures that references to the same file always use the same casing, regardless of the file system's case sensitivity.
+    // This helps prevent build issues between different operating systems (e.g., Windows vs. Linux).
     "forceConsistentCasingInFileNames": true,
+
+    // Instructs TypeScript not to emit (output) any JavaScript files.
+    // This is common in projects where a separate tool (like Babel or a bundler) handles the actual JavaScript output.
     "noEmit": true,
+
+    // Enables a strict check that flags variables, function arguments, and properties that don't have an explicit type (i.e., they are implicitly 'any').
     "noImplicitAny": true,
+
+    // Allows JavaScript files (`.js`) to be included in your project and imported alongside TypeScript files.
     "allowJs": true,
+
+    // Enables a set of recommended strict type-checking options. It turns on `noImplicitAny`, `noImplicitThis`, `alwaysStrict`, `strictNullChecks`, `strictFunctionTypes`, `strictPropertyInitialization`, and `strictBindCallApply`.
     "strict": true,
+
+    // Allows you to use the standard 'import default' syntax (e.g., `import * as React from 'react'`) for modules that only have a default export,
+    // even if the module system doesn't technically support it (e.g., CommonJS modules). This is a convenience flag.
     "allowSyntheticDefaultImports": true,
+
+    // A strictness flag that ensures all imported modules are treated as having no side-effects unless explicitly marked.
+    // Helps with tree-shaking and avoiding unexpected behavior from imports.
     "noUncheckedSideEffectImports": true,
+
+    // Enables compatibility between CommonJS and ES Modules. It allows CommonJS modules to be imported with the ES module syntax,
+    // particularly by generating `__importDefault` helper functions. Often paired with `allowSyntheticDefaultImports`.
     "esModuleInterop": true,
+
+    // Specifies the output directory for compiled files. Note: This will be ignored if `noEmit` is `true`.
     "outDir": "./dist"
   },
+
+  // --- File Inclusion/Exclusion ---
+
+  // Specifies an array of file patterns (globs) that TypeScript should include for compilation and type-checking.
   "include": [
+    // Includes all TypeScript files in a `src` directory within any sub-package.
     "packages/**/src/**/*.ts",
+    // Includes all JavaScript files in a `src` directory within any sub-package (due to `allowJs: true`).
     "packages/**/src/**/*.js",
+    // Includes all TypeScript files in a `tests` directory within any sub-package.
     "packages/**/tests/**/*.ts",
+    // Includes all JavaScript files in a `tests` directory within any sub-package (due to `allowJs: true`).
     "packages/**/tests/**/*.js",
-    "**/vite.config.ts",
+    // Includes any `vite.config.ts` file located anywhere in the project.
+    "**/vite.config.ts"
   ],
-  "exclude": ["**/assets/**/*", "node_modules", "**/dist/**"]
+
+  // Specifies an array of file patterns (globs) that TypeScript should explicitly exclude from compilation and type-checking,
+  // even if they are matched by the `include` option.
+  "exclude": [
+    // Excludes any directory named 'assets' anywhere in the project.
+    "**/assets/**/*",
+    // Excludes the standard 'node_modules' directory.
+    "node_modules",
+    // Excludes any directory named 'dist' anywhere in the project.
+    "**/dist/**"
+  ]
 }

@@ -1,11 +1,35 @@
 {
+  // --- Root Configuration Keys ---
+
+  // Specifies the path to another tsconfig file that this configuration inherits from.
+  // All settings from the referenced file ("../../tsconfig.json") are loaded first.
+  // Settings defined in this file will override or add to the inherited settings.
+  // "../../" suggests navigating up two directories to find the base config.
   "extends": "../../tsconfig.json",
+
+  // Overrides the `include` array from the extended file.
+  // In this local configuration, it focuses type-checking only on the files relevant to the current package:
+  // - "src/**/*": All files in the local 'src' directory and its subdirectories.
+  // - "tests/**/*": All files in the local 'tests' directory and its subdirectories.
   "include": ["src/**/*", "tests/**/*"],
+
+  // --- Compiler Options ---
+
+  // Adds or overrides compiler options from the extended file.
   "compilerOptions": {
+    // Allows you to use file extensions like `.ts`, `.tsx`, or `.mts` in your import specifiers,
+    // which is increasingly important for native ES module compatibility in Node.js environments.
     "allowImportingTsExtensions": true,
 
+    // Defines the base directory for resolving non-relative module names (e.g., using "paths").
+    // "./" means the current directory is the base for paths resolution.
     "baseUrl": "./",
+
+    // Configures module alias mappings, which allows you to define shortcuts for import paths.
     "paths": {
+      // The key "@/*" means any import starting with "@/" (e.g., `import { X } from '@/utils/file'`).
+      // The value ["./src/*"] means that TypeScript should resolve this import by looking for the file
+      // inside the local 'src' directory. The "*" acts as a wildcard match.
       "@/*": ["./src/*"]
     }
   }

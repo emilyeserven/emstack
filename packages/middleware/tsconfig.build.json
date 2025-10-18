@@ -1,20 +1,58 @@
 {
+  // --- Root Configuration Keys ---
+
+  // **Inheritance:** Extends the package's primary development configuration, which is assumed to be
+  // `./tsconfig.json` (i.e., `/packages/middleware/tsconfig.json`).
+  // This ensures all compiler options like strictness, target, and path aliases (@/*) are carried over.
   "extends": "./tsconfig.json",
+
+  // Configuration specific to 'ts-node'.
   "ts-node": {
+    // Ensures 'ts-node' includes all files specified in the 'files' or 'include' array when executing build scripts.
     "files": true
   },
+
+  // --- Compiler Options (The Compilation Overrides) ---
+
   "compilerOptions": {
+    // **Overrides inherited 'noEmit: true'**: Sets to `false` to instruct TypeScript to **output** compiled JavaScript files.
     "noEmit": false,
+
+    // Specifies the output directory for the compiled JavaScript files and declaration files.
     "outDir": "./dist",
+
+    // Defines the root directory of the source code. This preserves the internal directory structure in the output.
     "rootDir": "./src",
+
+    // **Monorepo Integration:** Enables "composite" mode. This is essential for project references.
+    // It marks the project as being part of a larger build graph and enables efficient incremental compilation (`tsc -b`).
     "composite": true,
+
+    // Defines the module system for the output JavaScript (modern, native ES Modules).
     "module": "ES2022",
+
+    // Defines the module resolution strategy, optimized for modern bundlers.
     "moduleResolution": "bundler",
+
+    // **Native ESM Requirement:** When emitting JavaScript, this ensures relative import paths (e.g., `./util`)
+    // are rewritten to include the necessary file extension (e.g., `./util.js`) for Node.js ES Module compatibility.
     "rewriteRelativeImportExtensions": true
   },
+
+  // --- File Inclusion/Exclusion ---
+
+  // **Narrows Scope:** Overrides the inherited `include` to narrow the files processed by this specific build step.
+  // It focuses only on the source code, excluding tests or other non-production assets.
   "include": ["src"],
+
+  // --- Project References ---
+
+  // **Project Dependencies:** An array that lists other TypeScript projects this package depends on.
+  // This is used by the compiler (`tsc`) to understand the build order and dependencies in a monorepo.
   "references": [
     {
+      // **Dependency Path:** Points to the build configuration of a sibling package (e.g., `/packages/types/tsconfig.build.json`).
+      // TypeScript will ensure the `/packages/types` project is built before this one.
       "path": "../types/tsconfig.build.json"
     }
   ]

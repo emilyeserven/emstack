@@ -1,22 +1,53 @@
 {
+  // --- Root Configuration Keys ---
+
+  // **Inheritance:** Extends the project's base tsconfig file located two directories up,
+  // inheriting all base compiler options (like strictness, ES2022 target, noEmit: true, etc.).
   "extends": "../../tsconfig.json",
+
+  // **Files List Override:** Overrides the inherited 'files' array. Setting this to an empty array
+  // prevents the root config from accidentally including loose files that are not covered by the 'include' or 'references' fields.
   "files": [],
+
+  // **Project References (The Core Feature):** This is a key feature for monorepos, indicating that this project is
+  // composed of, and depends on, other TypeScript configurations.
   "references": [
     {
+      // Points to the configuration for the client-side/browser application code (e.g., React/Vue).
+      // This config will likely enable specific libraries like 'dom' and define the entry point.
       "path": "./tsconfig.app.json"
     },
     {
+      // Points to the configuration for Node.js-specific code (e.g., server-side rendering, build scripts, server setup).
+      // This config will likely enable the 'node' library types and be configured for a Node environment.
       "path": "./tsconfig.node.json"
     },
     {
+      // Declares a dependency on the compiled output/declaration files of the sibling 'types' package.
+      // TypeScript uses this to determine build order and resolve types between packages.
       "path": "../types/tsconfig.build.json"
     }
   ],
+
+  // **Inclusion Scope:** Overrides the inherited `include` from the base config, narrowing it down to only the
+  // files within the local 'src' directory. This limits the scope of file-watching and type-checking for this specific package.
   "include": ["src"],
+
+  // --- Compiler Options (Local Customization) ---
+
   "compilerOptions": {
+    // **Monorepo Build Flag:** Enables "composite" mode for this project. This is crucial because it's used as a
+    // container for other referenced projects, making it part of the efficient, incremental build graph (`tsc -b`).
     "composite": true,
+
+    // **Path Resolution Root:** Defines the base directory for resolving non-relative module names.
+    // Setting it to "./" means the current `/packages/client` directory is the root.
     "baseUrl": "./",
+
+    // **Module Aliases:** Configures custom paths for cleaner imports.
     "paths": {
+      // **Alias Definition:** Any import starting with `@/` (e.g., `import { X } from '@/components/button'`).
+      // **Resolution Target:** TypeScript resolves this by looking for the file inside the local `./src` directory.
       "@/*": ["./src/*"]
     }
   }

@@ -1,32 +1,83 @@
 {
+  // --- Root Configuration Keys ---
+
+  // **Inheritance:** Extends the package's primary configuration (assumed to be `./tsconfig.json` in the same directory, i.e., /packages/client/tsconfig.json).
+  // This imports the project-wide strictness and path references but allows for specific browser-app overrides.
   "extends": "./tsconfig.json",
+
+  // --- Compiler Options (Browser App Overrides) ---
+
   "compilerOptions": {
+    // **Path Resolution:** Overrides inherited `baseUrl` to ensure resolution begins in the current directory.
     "baseUrl": ".",
+    // **Module Aliases:** Overrides/re-specifies the `@/*` alias to ensure module resolution works correctly for the app files.
     "paths": {
       "@/*": ["./src/*"]
     },
 
+    // **Build Optimization:** Specifies the location for the file used by TypeScript's incremental build feature (`tsc -b`).
+    // This dramatically speeds up re-compilation in monorepos by tracking what changed.
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+
+    // **JS Target:** Specifies the output JavaScript version (modern).
     "target": "ES2022",
+
+    // **ES2022 Feature:** Ensures correct compilation behavior for class properties, aligning with the ES2022 standard.
     "useDefineForClassFields": true,
+
+    // **Library Context:** Specifies the available run-time environments/APIs. Crucially includes **"DOM"** and **"DOM.Iterable"** to enable browser types (e.g., `document`, `window`).
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
+
+    // **Module System:** Specifies the module system (modern, tree-shakable).
     "module": "ESNext",
+
+    // **Dependency Check Skip:** Skips type checking of declaration files (`.d.ts`) that come from external libraries (e.g., `node_modules`). This speeds up compilation.
     "skipLibCheck": true,
 
+    // **Module Resolution:** Delegates module path resolution to a bundler (like Vite, Webpack).
     "moduleResolution": "bundler",
+
+    // **Modern Import Feature:** Allows using file extensions in imports (e.g., `import X from './file.ts'`).
     "allowImportingTsExtensions": true,
+
+    // **Strict Module Syntax:** Enforces that module output closely matches the source code's import/export statements, helping with tooling like bundlers and native ESM resolution.
     "verbatimModuleSyntax": true,
+
+    // **Module Type:** Forces TypeScript to treat all files as modules, even if they don't explicitly have imports/exports, which is important in many modern build environments.
     "moduleDetection": "force",
+
+    // **No Compilation Output:** Instructs TypeScript not to generate JavaScript files. This confirms that a separate bundler or tool is responsible for the final output.
     "noEmit": true,
+
+    // **JSX Support:** Enables JSX syntax and specifies the output format for JSX (modern React transformation).
     "jsx": "react-jsx",
 
+    // --- Strictness Flags ---
+
+    // Enables a broad set of strict type-checking behavior (inherited, but good to ensure).
     "strict": true,
+
+    // Ensures variables declared but not used are flagged as errors.
     "noUnusedLocals": true,
+
+    // Ensures function parameters declared but not used are flagged as errors.
     "noUnusedParameters": true,
+
+    // **Tooling Focus:** Ensures the compiler only allows syntax that is automatically removed during compilation (like type annotations), preventing reliance on features that don't exist in standard JS.
     "erasableSyntaxOnly": true,
+
+    // Flags missing `break` statements in switch-case blocks.
     "noFallthroughCasesInSwitch": true,
+
+    // Ensures all imported modules are treated as having no side-effects unless explicitly marked, aiding tree-shaking.
     "noUncheckedSideEffectImports": true
   },
+
+  // --- File Inclusion/Exclusion ---
+
+  // **Scope:** Includes only files within the local 'src' directory for type checking.
   "include": ["src"],
+
+  // **Exclusion:** Explicitly excludes the './storybook' directory from compilation and type checking, likely because it has its own dedicated configuration.
   "exclude": ["./storybook"]
 }
