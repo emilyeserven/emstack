@@ -21,7 +21,7 @@ export default defineConfig([
     },
     settings: {
       "better-tailwindcss": {
-        entryPoint: "index.css",
+        entryPoint: "./src/index.css",
       },
     },
   },
