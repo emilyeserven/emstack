@@ -1,19 +1,15 @@
 // For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
+import importConfig from "@emilyeserven/eslint-config/configs/import.js";
+import jsConfig from "@emilyeserven/eslint-config/configs/js.js";
+import middlewareConfig from "@emilyeserven/eslint-config/configs/middleware.js";
+import reactBundleConfig from "@emilyeserven/eslint-config/configs/reactBundle.js";
+import stylisticConfig from "@emilyeserven/eslint-config/configs/stylistic.js";
+import tailwindConfig from "@emilyeserven/eslint-config/configs/tailwind.js";
+import tsConfig from "@emilyeserven/eslint-config/configs/ts.js";
 import { globalIgnores } from "eslint/config";
-import storybook from "eslint-plugin-storybook";
+// import storybook from "eslint-plugin-storybook";
 import globals from "globals";
 import tseslint from "typescript-eslint";
-
-import importConfig from "./lintConfigs/importConfig.config.js";
-import jsConfig from "./lintConfigs/jsConfig.config.js";
-import middlewareConfig from "./lintConfigs/middlewareConfig.config.js";
-import reactConfig from "./lintConfigs/reactConfig.config.js";
-import stylisticConfig from "./lintConfigs/stylisticConfig.config.js";
-import tailwindConfig from "./lintConfigs/tailwindConfig.config.js";
-import tsConfig from "./lintConfigs/tsConfig.config.js";
-import tsQueryConfig from "./lintConfigs/tsQueryConfig.config.js";
-// eslint-disable-next-line import/max-dependencies
-import tsRouterConfig from "./lintConfigs/tsRouterConfig.config.js";
 
 const nonClientGlobs = [
   "packages/middleware/src/**/*.ts",
@@ -24,7 +20,7 @@ const nonClientGlobs = [
 export default tseslint.config([
   globalIgnores(["**/dist/**/*"]),
   ...stylisticConfig,
-  storybook.configs["flat/recommended"],
+  ...reactBundleConfig,
   {
     files: ["**/*.{js,ts,jsx,tsx}"],
     ignores: nonClientGlobs,
@@ -50,12 +46,8 @@ export default tseslint.config([
     },
   },
   {
-    files: ["packages/client/src/**/*.{js,jsx,ts,tsx}"],
-    extends: [...tsQueryConfig, tsRouterConfig],
-  },
-  {
     files: ["packages/client/src/**/*.{jsx,tsx}"],
-    extends: [...reactConfig, ...tailwindConfig],
+    extends: [...tailwindConfig],
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,

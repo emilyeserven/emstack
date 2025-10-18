@@ -2,7 +2,6 @@
   "name": "emstack",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "type": "module",
   "scripts": {
     "build": "pnpm run -r build",
@@ -11,6 +10,7 @@
     "lint:fix": "eslint .. --fix"
   },
   "devDependencies": {
+    "@emilyeserven/eslint-config": "1.0.18",
     "@eslint/js": "^9.34.0",
     "@stylistic/eslint-plugin": "^5.2.3",
     "@tanstack/eslint-plugin-query": "^5.83.1",
