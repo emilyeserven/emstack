@@ -10,7 +10,7 @@
     "lint:fix": "eslint .. --fix"
   },
   "devDependencies": {
-    "@emilyeserven/eslint-config": "1.0.8",
+    "@emilyeserven/eslint-config": "1.0.9",
     "@eslint/js": "^9.34.0",
     "@stylistic/eslint-plugin": "^5.2.3",
     "@tanstack/eslint-plugin-query": "^5.83.1",

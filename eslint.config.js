@@ -1,12 +1,12 @@
 // For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
 import importConfig from "@emilyeserven/eslint-config/configs/import.js";
+import jsConfig from "@emilyeserven/eslint-config/configs/js.js";
 import stylisticConfig from "@emilyeserven/eslint-config/configs/stylistic.js";
 import { globalIgnores } from "eslint/config";
 // import storybook from "eslint-plugin-storybook";
 import globals from "globals";
 import tseslint from "typescript-eslint";
 
-import jsConfig from "./lintConfigs/jsConfig.config.js";
 import middlewareConfig from "./lintConfigs/middlewareConfig.config.js";
 import reactConfig from "./lintConfigs/reactConfig.config.js";
 import tailwindConfig from "./lintConfigs/tailwindConfig.config.js";
