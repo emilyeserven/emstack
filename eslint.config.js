@@ -20,6 +20,7 @@ const nonClientGlobs = [
 export default tseslint.config([
   globalIgnores(["**/dist/**/*"]),
   ...stylisticConfig,
+  ...reactBundleConfig,
   {
     files: ["**/*.{js,ts,jsx,tsx}"],
     ignores: nonClientGlobs,
@@ -46,7 +47,7 @@ export default tseslint.config([
   },
   {
     files: ["packages/client/src/**/*.{jsx,tsx}"],
-    extends: [...reactBundleConfig, ...tailwindConfig],
+    extends: [...tailwindConfig],
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
