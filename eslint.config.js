@@ -6,7 +6,7 @@ import middlewareConfig from "@emilyeserven/eslint-config/configs/middleware.js"
 import reactBundleConfig from "@emilyeserven/eslint-config/configs/reactBundle.js";
 import stylisticConfig from "@emilyeserven/eslint-config/configs/stylistic.js";
 import tailwindConfig from "@emilyeserven/eslint-config/configs/tailwind.js";
-import tsConfig from "@emilyeserven/eslint-config/configs/ts.js";
+import tsGlobConfig from "@emilyeserven/eslint-config/globConfigs/tsGlob.js";
 import { globalIgnores } from "eslint/config";
 // import storybook from "eslint-plugin-storybook";
 import globals from "globals";
@@ -21,23 +21,12 @@ const nonClientGlobs = [
 export default tseslint.config([
   globalIgnores(["**/dist/**/*"]),
   ...stylisticConfig,
+  ...tsGlobConfig,
   ...reactBundleConfig,
   {
     files: ["**/*.{js,ts,jsx,tsx}"],
     ignores: nonClientGlobs,
     extends: [...jsConfig, ...importConfig],
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: {
-        ...globals.browser,
-        __dirname: true,
-      },
-    },
-  },
-  {
-    files: ["**/*.{ts}"],
-    ignores: nonClientGlobs,
-    extends: [...tsConfig],
     languageOptions: {
       ecmaVersion: 2020,
       globals: {
