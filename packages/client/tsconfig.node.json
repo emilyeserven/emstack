@@ -1,25 +1,66 @@
 {
+  // --- Root Configuration Keys ---
+
+  // **Inheritance:** Extends the package's primary configuration (assumed to be `./tsconfig.json` in the same directory).
+  // This imports shared settings like path aliases (@/*) and general strictness flags.
   "extends": "./tsconfig.json",
+
+  // --- Compiler Options (Node.js Environment Overrides) ---
+
   "compilerOptions": {
+    // **Build Optimization:** Specifies a unique location for the file used by TypeScript's incremental build feature.
+    // This allows the Node build to track changes independently from the browser app build.
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
+
+    // **JS Target:** Targets a very recent version of JavaScript. This assumes the Node.js environment is modern and supports these features natively.
     "target": "ES2023",
+
+    // **ES2022 Feature:** Ensures correct compilation behavior for class properties, aligning with the ES2022/2023 standard.
     "useDefineForClassFields": true,
+
+    // **Library Context (Crucial Difference):** Specifies the available run-time APIs. **Omitting "DOM"** and **"DOM.Iterable"** means browser-specific types are *not* available, enforcing that this code only uses standard JavaScript and potentially Node.js APIs (which TypeScript may infer or need explicit `@types/node` for).
     "lib": ["ES2023"],
+
+    // **Module System:** Specifies the module system (modern, tree-shakable).
     "module": "ESNext",
+
+    // **Dependency Check Skip:** Skips type checking of external declaration files (`.d.ts`), speeding up compilation.
     "skipLibCheck": true,
 
+    // **Module Resolution:** Delegates module path resolution to a bundler (like Vite or Webpack).
     "moduleResolution": "bundler",
+
+    // **Modern Import Feature:** Allows using file extensions in imports (e.g., `import X from './file.ts'`).
     "allowImportingTsExtensions": true,
+
+    // **Strict Module Syntax:** Enforces that module output closely matches the source code's import/export statements, aiding bundlers and native ESM.
     "verbatimModuleSyntax": true,
+
+    // **Module Type:** Forces TypeScript to treat all files as modules, which is standard for Node.js ES Modules.
     "moduleDetection": "force",
+
+    // **No Compilation Output:** Instructs TypeScript not to generate JavaScript files, confirming that a separate tool (like a build runner or Vite) handles the output.
     "noEmit": true,
 
+    // --- Strictness Flags (Inherited/Reiterated) ---
+
+    // Enables a broad set of strict type-checking behavior.
     "strict": true,
+    // Ensures variables declared but not used are flagged as errors.
     "noUnusedLocals": true,
+    // Ensures function parameters declared but not used are flagged as errors.
     "noUnusedParameters": true,
+    // Ensures the compiler only allows syntax that is automatically removed during compilation (type annotations).
     "erasableSyntaxOnly": true,
+    // Flags missing `break` statements in switch-case blocks.
     "noFallthroughCasesInSwitch": true,
+    // Ensures all imported modules are treated as having no side-effects unless explicitly marked, aiding tree-shaking.
     "noUncheckedSideEffectImports": true
   },
+
+  // --- File Inclusion/Exclusion ---
+
+  // **Narrowed Scope:** Overrides the inherited `include`. This configuration is restricted to only checking the `vite.config.ts` file.
+  // This is common since the main application code is handled by `tsconfig.app.json`.
   "include": ["vite.config.ts"]
 }
