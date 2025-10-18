@@ -1,5 +1,5 @@
 // For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
-import mainConfig from "@emilyeserven/eslint-config";
+import stylisticConfig from "@emilyeserven/eslint-config/stylisticConfig.js";
 import { globalIgnores } from "eslint/config";
 // import storybook from "eslint-plugin-storybook";
 import globals from "globals";
@@ -23,7 +23,7 @@ const nonClientGlobs = [
 
 export default tseslint.config([
   globalIgnores(["**/dist/**/*"]),
-  ...mainConfig,
+  ...stylisticConfig,
   {
     files: ["**/*.{js,ts,jsx,tsx}"],
     ignores: nonClientGlobs,
