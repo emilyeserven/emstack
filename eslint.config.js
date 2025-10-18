@@ -6,14 +6,12 @@ import reactConfig from "@emilyeserven/eslint-config/configs/react.js";
 import stylisticConfig from "@emilyeserven/eslint-config/configs/stylistic.js";
 import tailwindConfig from "@emilyeserven/eslint-config/configs/tailwind.js";
 import tsQueryConfig from "@emilyeserven/eslint-config/configs/tanstackQuery.js";
+import tsRouterConfig from "@emilyeserven/eslint-config/configs/tanstackRouter.js";
 import tsConfig from "@emilyeserven/eslint-config/configs/ts.js";
 import { globalIgnores } from "eslint/config";
 // import storybook from "eslint-plugin-storybook";
 import globals from "globals";
 import tseslint from "typescript-eslint";
-
-// eslint-disable-next-line import/max-dependencies
-import tsRouterConfig from "./lintConfigs/tsRouterConfig.config.js";
 
 const nonClientGlobs = [
   "packages/middleware/src/**/*.ts",
