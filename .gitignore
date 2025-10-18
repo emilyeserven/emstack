@@ -15,3 +15,5 @@ dist
 appout
 
 tsconfig.build.tsbuildinfo
+
+.npmrc
