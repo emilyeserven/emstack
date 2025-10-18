@@ -8,7 +8,7 @@ This template exists because I don't really like fullstack frameworks.
 - Fastify (Middleware/Backend)
 
 ## Tooling
-- ESLint
+- ESLint - [config package](https://github.com/emilyeserven/eslint-config)
 - PNPM
 - Vite
 - Docker
