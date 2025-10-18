@@ -2,11 +2,9 @@
 import importConfig from "@emilyeserven/eslint-config/configs/import.js";
 import jsConfig from "@emilyeserven/eslint-config/configs/js.js";
 import middlewareConfig from "@emilyeserven/eslint-config/configs/middleware.js";
-import reactConfig from "@emilyeserven/eslint-config/configs/react.js";
+import reactBundleConfig from "@emilyeserven/eslint-config/configs/reactBundle.js";
 import stylisticConfig from "@emilyeserven/eslint-config/configs/stylistic.js";
 import tailwindConfig from "@emilyeserven/eslint-config/configs/tailwind.js";
-import tsQueryConfig from "@emilyeserven/eslint-config/configs/tanstackQuery.js";
-import tsRouterConfig from "@emilyeserven/eslint-config/configs/tanstackRouter.js";
 import tsConfig from "@emilyeserven/eslint-config/configs/ts.js";
 import { globalIgnores } from "eslint/config";
 // import storybook from "eslint-plugin-storybook";
@@ -47,12 +45,8 @@ export default tseslint.config([
     },
   },
   {
-    files: ["packages/client/src/**/*.{js,jsx,ts,tsx}"],
-    extends: [...tsQueryConfig, tsRouterConfig],
-  },
-  {
     files: ["packages/client/src/**/*.{jsx,tsx}"],
-    extends: [...reactConfig, ...tailwindConfig],
+    extends: [...reactBundleConfig, ...tailwindConfig],
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
