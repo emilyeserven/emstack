@@ -4,12 +4,12 @@ import jsConfig from "@emilyeserven/eslint-config/configs/js.js";
 import middlewareConfig from "@emilyeserven/eslint-config/configs/middleware.js";
 import reactConfig from "@emilyeserven/eslint-config/configs/react.js";
 import stylisticConfig from "@emilyeserven/eslint-config/configs/stylistic.js";
+import tailwindConfig from "@emilyeserven/eslint-config/configs/tailwind.js";
 import { globalIgnores } from "eslint/config";
 // import storybook from "eslint-plugin-storybook";
 import globals from "globals";
 import tseslint from "typescript-eslint";
 
-import tailwindConfig from "./lintConfigs/tailwindConfig.config.js";
 import tsConfig from "./lintConfigs/tsConfig.config.js";
 import tsQueryConfig from "./lintConfigs/tsQueryConfig.config.js";
 // eslint-disable-next-line import/max-dependencies
