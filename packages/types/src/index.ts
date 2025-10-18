@@ -1,2 +1,2 @@
-export * from "./DynamicTest.js";
-export * from "./Test.js";
+export * from "./DynamicTest.ts";
+export * from "./Test.ts";

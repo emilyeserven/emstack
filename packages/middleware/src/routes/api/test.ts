@@ -1,6 +1,6 @@
 import { JsonSchemaToTsProvider } from "@fastify/type-provider-json-schema-to-ts";
 import { FastifyInstance } from "fastify";
-import { DynamicTest } from "@emstack/types/src/index.js";
+import { DynamicTest } from "@emstack/types/src/index.ts";
 
 const testSchema = {
   schema: {

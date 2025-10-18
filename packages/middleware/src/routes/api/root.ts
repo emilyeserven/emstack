@@ -1,6 +1,6 @@
 import { JsonSchemaToTsProvider } from "@fastify/type-provider-json-schema-to-ts";
 import { FastifyInstance } from "fastify";
-import { Test } from "@emstack/types/src/index.js";
+import { Test } from "@emstack/types/src/index.ts";
 
 export default async function (server: FastifyInstance) {
   const fastify = server.withTypeProvider<JsonSchemaToTsProvider>();
