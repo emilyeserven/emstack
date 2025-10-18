@@ -10,7 +10,7 @@
     "lint:fix": "eslint .. --fix"
   },
   "devDependencies": {
-    "@emilyeserven/eslint-config": "1.0.18",
+    "@emilyeserven/eslint-config": "1.0.22",
     "@stylistic/eslint-plugin": "^5.2.3",
     "@typescript-eslint/parser": "^8.41.0",
     "eslint": "^9.34.0",
@@ -20,7 +20,8 @@
     "knip": "^5.65.0",
     "syncpack": "^13.0.4",
     "typescript": "^5.5.3",
-    "typescript-eslint": "^8.41.0"
+    "typescript-eslint": "^8.41.0",
+    "tailwindcss": "^4.1.12"
   },
   "private": true,
   "packageManager": "pnpm@10.13.1",
