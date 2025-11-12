@@ -19,6 +19,7 @@
   "private": true,
   "scripts": {
     "build": "pnpm run -r build",
+    "test": "pnpm run -r test",
     "dev": "concurrently -n \"models,server,ui\" -c \"yellow,blue,green\" \"pnpm --filter=@emstack/types --stream run dev\" \"pnpm --filter=@emstack/middleware --stream run dev\" \"pnpm --filter=@emstack/client --stream run dev\"",
     "lint": "eslint .",
     "lint:fix": "eslint .. --fix",

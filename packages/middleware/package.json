@@ -29,7 +29,8 @@
   "private": true,
   "scripts": {
     "build": "tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json",
-    "dev": "nodemon --exec tsx src/app.ts"
+    "dev": "nodemon --exec tsx src/app.ts",
+    "test": "node --test"
   },
   "type": "module"
 }
