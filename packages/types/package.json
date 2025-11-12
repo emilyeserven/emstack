@@ -1,18 +1,18 @@
 {
   "name": "@emstack/types",
-  "version": "1.0.0",
   "description": "",
-  "type": "module",
-  "packageManager": "pnpm@10.13.1",
+  "version": "1.0.0",
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "typescript": "^5.9.3"
+  },
   "module": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "packageManager": "pnpm@10.13.1",
+  "private": true,
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "dev": "tsc -p tsconfig.build.json --watch --preserveWatchOutput"
   },
-  "private": true,
-  "devDependencies": {
-    "@types/node": "^24.1.0",
-    "typescript": "^5.8.3"
-  }
+  "type": "module",
+  "types": "dist/index.d.ts"
 }
