@@ -7,7 +7,7 @@ export const Route = createFileRoute("/about")({
   component: About,
 });
 
-function About() {
+export function About() {
   const {
     isPending, error, data,
   } = useQuery({
@@ -18,7 +18,7 @@ function About() {
   return (
     <div className="p-2">
       <h2>Hello from About!</h2>
-      <p>
+      <p data-testid="status-message">
         Test data is{" "}
         {isPending && "Pending"}
         {error && "Erroring"}
