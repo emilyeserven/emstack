@@ -1,14 +1,9 @@
 {
   "name": "emstack",
-  "version": "1.0.0",
   "description": "",
-  "type": "module",
-  "scripts": {
-    "build": "pnpm run -r build",
-    "dev": "concurrently -n \"models,server,ui\" -c \"yellow,blue,green\" \"pnpm --filter=@emstack/types --stream run dev\" \"pnpm --filter=@emstack/middleware --stream run dev\" \"pnpm --filter=@emstack/client --stream run dev\"",
-    "lint": "eslint .",
-    "lint:fix": "eslint .. --fix",
-    "storybook": "pnpm --filter=@emstack/client run storybook"
+  "version": "1.0.0",
+  "dependencies": {
+    "concurrently": "^9.2.1"
   },
   "devDependencies": {
     "@emilyeserven/eslint-config": "1.0.31",
@@ -20,9 +15,14 @@
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.4"
   },
-  "private": true,
   "packageManager": "pnpm@10.13.1",
-  "dependencies": {
-    "concurrently": "^9.2.1"
-  }
+  "private": true,
+  "scripts": {
+    "build": "pnpm run -r build",
+    "dev": "concurrently -n \"models,server,ui\" -c \"yellow,blue,green\" \"pnpm --filter=@emstack/types --stream run dev\" \"pnpm --filter=@emstack/middleware --stream run dev\" \"pnpm --filter=@emstack/client --stream run dev\"",
+    "lint": "eslint .",
+    "lint:fix": "eslint .. --fix",
+    "storybook": "pnpm --filter=@emstack/client run storybook"
+  },
+  "type": "module"
 }
