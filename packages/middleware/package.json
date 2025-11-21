@@ -32,5 +32,9 @@
     "dev": "nodemon --exec tsx src/app.ts",
     "test": "node --test"
   },
+  "lint-staged": {
+    "*": "eslint --fix",
+    "*.{js,ts}": "pnpm run test"
+  },
   "type": "module"
 }

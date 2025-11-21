@@ -13,6 +13,9 @@
     "build": "tsc -p tsconfig.build.json",
     "dev": "tsc -p tsconfig.build.json --watch --preserveWatchOutput"
   },
+  "lint-staged": {
+    "*": "eslint --fix"
+  },
   "type": "module",
   "types": "dist/index.d.ts"
 }

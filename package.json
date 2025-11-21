@@ -9,7 +9,9 @@
     "@emilyeserven/eslint-config": "1.0.31",
     "eslint": "^9.39.1",
     "globals": "^16.5.0",
+    "husky": "^9.1.7",
     "knip": "^5.69.1",
+    "lint-staged": "^16.2.7",
     "syncpack": "^13.0.4",
     "tailwindcss": "^4.1.17",
     "typescript": "^5.9.3",
@@ -23,7 +25,11 @@
     "dev": "concurrently -n \"models,server,ui\" -c \"yellow,blue,green\" \"pnpm --filter=@emstack/types --stream run dev\" \"pnpm --filter=@emstack/middleware --stream run dev\" \"pnpm --filter=@emstack/client --stream run dev\"",
     "lint": "eslint .",
     "lint:fix": "eslint .. --fix",
-    "storybook": "pnpm --filter=@emstack/client run storybook"
+    "storybook": "pnpm --filter=@emstack/client run storybook",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
   },
   "type": "module"
 }
