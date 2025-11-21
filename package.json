@@ -9,6 +9,7 @@
     "@emilyeserven/eslint-config": "1.0.31",
     "eslint": "^9.39.1",
     "globals": "^16.5.0",
+    "husky": "^9.1.7",
     "knip": "^5.69.1",
     "syncpack": "^13.0.4",
     "tailwindcss": "^4.1.17",
