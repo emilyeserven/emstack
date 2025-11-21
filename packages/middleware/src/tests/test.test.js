@@ -6,5 +6,6 @@ test("passing test, strictEqual", (t) => {
 });
 
 test("passing test, notStrictEqual", (t) => {
-  assert.notStrictEqual(1, 2);
+  assert.notStrictEqual(1,
+      2);
 });

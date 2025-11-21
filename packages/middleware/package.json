@@ -33,7 +33,6 @@
     "test": "node --test"
   },
   "lint-staged": {
-    "*": "eslint --fix",
     "*.{js,ts}": "pnpm run test"
   },
   "type": "module"
